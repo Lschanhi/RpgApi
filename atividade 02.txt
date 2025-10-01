@@ -1,0 +1,7 @@
+LInk do Git
+
+https://github.com/Lschanhi/Aula04RpgApi
+
+link SOMEE
+
+http://rpgapiexercicio.somee.com/RpgApi/personagensexercicio
