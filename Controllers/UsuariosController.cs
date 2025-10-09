@@ -37,7 +37,18 @@ namespace Aula04RpgApi.Controllers
             try
             {
                 if (await UsuarioExistente(user.Username))
+                {
                     throw new System.Exception("Nome de usuário já existente");
+                }
+                else if (String.IsNullOrWhiteSpace(user.PasswordString))
+                {
+                    throw new System.Exception("Senha não pode ser vazia");
+                }
+                else if(user.PasswordString.Length < 8)
+                {
+                    throw new System.Exception("Senha Tem que ter + 8 Caracteres");
+                }
+
                 Criptografia.CriarPasswordHash(user.PasswordString, out byte[] hash, out byte[] salt);
                 user.PasswordString = string.Empty;
                 user.PasswordHash = hash;
@@ -60,13 +71,14 @@ namespace Aula04RpgApi.Controllers
         {
             try
             {
-                Usuario? usuario = await _contex.TB_USUARIOS.FirstOrDefaultAsync(x=> x.Username.ToLower().Equals(credenciais.Username.ToLower()));
+                
+                Usuario? usuario = await _contex.TB_USUARIOS.FirstOrDefaultAsync(x => x.Username.ToLower().Equals(credenciais.Username.ToLower()));
 
-                if(usuario == null)
+                if (usuario == null)
                 {
-                    throw new System.Exception ("Usuário não Encontrado");
+                    throw new System.Exception("Usuário não Encontrado");
                 }
-                else if(!Criptografia.VerificarPasswordHash(credenciais.PasswordString, usuario.PasswordHash, usuario.PasswordSalt))
+                else if (!Criptografia.VerificarPasswordHash(credenciais.PasswordString, usuario.PasswordHash, usuario.PasswordSalt))
                 {
                     throw new System.Exception("Senha Inválida");
                 }
@@ -78,10 +90,37 @@ namespace Aula04RpgApi.Controllers
             }
             catch (System.Exception ex)
             {
-                
+
                 return BadRequest(ex.Message);
             }
         }
+        
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+
+            try
+                {
+                // Busca o usuário pelo ID
+                var usuario = await _contex.TB_USUARIOS.FirstOrDefaultAsync(u => u.Id == id);
+
+                    // Verifica se existe
+                    if (usuario == null)
+                        return NotFound("Usuário não encontrado.");
+
+                     // Remove do banco
+                    _contex.TB_USUARIOS.Remove(usuario);
+                    await _contex.SaveChangesAsync();
+
+                    return Ok("Usuário removido com sucesso!");
+                }
+            catch (System.Exception ex)
+                {
+                    return BadRequest(ex.Message);
+                }
+
+        }
+
 
 
     }

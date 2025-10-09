@@ -26,10 +26,14 @@ namespace RpgApi.Utils
         {
             using (var hmac = new System.Security.Cryptography.HMACSHA512(salt))
             {
-                var ComputeHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
-                for (int i = 0; i < ComputeHash.Length; i++)
+                var computeHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+
+                 if (computeHash.Length != hash.Length)
+                    return false;
+
+                for (int i = 0; i < computeHash.Length; i++)
                 {
-                    if (ComputeHash[i] != hash[i])
+                    if (computeHash[i] != hash[i])
                     {
                         return false;
                     }

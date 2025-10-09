@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Identity;
 
 namespace RpgApi.Models
 {
@@ -19,6 +20,7 @@ namespace RpgApi.Models
 
         [NotMapped]//DataAnnotations
         public string PasswordString { get; set; } = string.Empty;
+    
 
         public List<Personagem> Personagens { get; set; }
            = new List<Personagem>();

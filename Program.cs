@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using RpgApi.Data;
 internal class Program
 {
@@ -9,7 +10,7 @@ internal class Program
         builder.Services.AddDbContext<DataContext>(
             options =>
             {
-                options.UseSqlServer(builder.Configuration.GetConnectionString("ConexaoLocal"));
+                options.UseSqlServer(builder.Configuration.GetConnectionString("ConexaoCasa"));
                 
             }
         );
@@ -18,7 +19,8 @@ internal class Program
         // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
         builder.Services.AddOpenApi();
         builder.Services.AddControllers();
-        
+
+        builder.Services.AddControllers().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
         var app = builder.Build();
 
