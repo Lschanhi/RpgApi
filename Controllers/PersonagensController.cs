@@ -10,7 +10,7 @@ using RpgApi.Models;
 
 namespace RpgApi.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Jogador")]
     [ApiController]
     [Route("[controller]")]
     public class PersonagensController : ControllerBase
