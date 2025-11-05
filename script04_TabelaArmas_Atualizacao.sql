@@ -1,5 +1,5 @@
 ﻿BEGIN TRANSACTION;
-ALTER TABLE [TB_PERSONAGENS] ADD [Derotas] int NOT NULL DEFAULT 0;
+ALTER TABLE [TB_PERSONAGENS] ADD [Derrotas] int NOT NULL DEFAULT 0;
 
 ALTER TABLE [TB_PERSONAGENS] ADD [Disputas] int NOT NULL DEFAULT 0;
 
@@ -42,37 +42,37 @@ WHERE [id] = 7;
 SELECT @@ROWCOUNT;
 
 
-UPDATE [TB_PERSONAGENS] SET [Derotas] = 0, [Disputas] = 0, [Vitorias] = 0
+UPDATE [TB_PERSONAGENS] SET [Derrotas] = 0, [Disputas] = 0, [Vitorias] = 0
 WHERE [Id] = 1;
 SELECT @@ROWCOUNT;
 
 
-UPDATE [TB_PERSONAGENS] SET [Derotas] = 0, [Disputas] = 0, [Vitorias] = 0
+UPDATE [TB_PERSONAGENS] SET [Derrotas] = 0, [Disputas] = 0, [Vitorias] = 0
 WHERE [Id] = 2;
 SELECT @@ROWCOUNT;
 
 
-UPDATE [TB_PERSONAGENS] SET [Derotas] = 0, [Disputas] = 0, [Vitorias] = 0
+UPDATE [TB_PERSONAGENS] SET [Derrotas] = 0, [Disputas] = 0, [Vitorias] = 0
 WHERE [Id] = 3;
 SELECT @@ROWCOUNT;
 
 
-UPDATE [TB_PERSONAGENS] SET [Derotas] = 0, [Disputas] = 0, [Vitorias] = 0
+UPDATE [TB_PERSONAGENS] SET [Derrotas] = 0, [Disputas] = 0, [Vitorias] = 0
 WHERE [Id] = 4;
 SELECT @@ROWCOUNT;
 
 
-UPDATE [TB_PERSONAGENS] SET [Derotas] = 0, [Disputas] = 0, [Vitorias] = 0
+UPDATE [TB_PERSONAGENS] SET [Derrotas] = 0, [Disputas] = 0, [Vitorias] = 0
 WHERE [Id] = 5;
 SELECT @@ROWCOUNT;
 
 
-UPDATE [TB_PERSONAGENS] SET [Derotas] = 0, [Disputas] = 0, [Vitorias] = 0
+UPDATE [TB_PERSONAGENS] SET [Derrotas] = 0, [Disputas] = 0, [Vitorias] = 0
 WHERE [Id] = 6;
 SELECT @@ROWCOUNT;
 
 
-UPDATE [TB_PERSONAGENS] SET [Derotas] = 0, [Disputas] = 0, [Vitorias] = 0
+UPDATE [TB_PERSONAGENS] SET [Derrotas] = 0, [Disputas] = 0, [Vitorias] = 0
 WHERE [Id] = 7;
 SELECT @@ROWCOUNT;
 

@@ -1,6 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using RpgApi.Data;
+using System.Text;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+
 internal class Program
 {
     private static void Main(string[] args)
@@ -11,7 +15,7 @@ internal class Program
             options =>
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("ConexaoCasa"));
-                
+
             }
         );
 
@@ -21,6 +25,18 @@ internal class Program
         builder.Services.AddControllers();
 
         builder.Services.AddControllers().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
+        builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII
+                .GetBytes(builder.Configuration.GetSection("ConfiguracaoToken:Chave").Value)),
+                    ValidateIssuer = false,
+                    ValidateAudience = false
+                };
+            });
 
         var app = builder.Build();
 
@@ -50,11 +66,15 @@ internal class Program
             return forecast;
         })
         .WithName("GetWeatherForecast");
+
+        app.UseAuthentication();
+        app.UseAuthorization();
+
         app.MapControllers();
         app.Run();
-        
 
-    
+
+
     }
 }
 
