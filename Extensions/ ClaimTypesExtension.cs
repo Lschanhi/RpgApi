@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using RpgApi.Models;
 
 namespace RpgApi.Extensions
 {
-    public static class  ClaimTypesExtension
+    public static class ClaimTypesExtension
     {
-        public static int usuarioId(this ClaimsPrincipal user)
+        public static int UsuarioId(this ClaimsPrincipal user)
         {
             try
             {
@@ -21,20 +23,26 @@ namespace RpgApi.Extensions
                 return 0;
             }
         }
-        
 
-          public static string usuarioPerfil(this ClaimsPrincipal user)
+
+        public static string usuarioPerfil(this ClaimsPrincipal user)
         {
             try
             {
                 var usuarioPerfil = user.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Role)?.Value ?? string.Empty;
                 return usuarioPerfil;
             }
-            catch 
+            catch
             {
 
                 return string.Empty;
             }
         }
+
+      
+
+
     }
+
+    
 }

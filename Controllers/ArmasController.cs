@@ -35,7 +35,7 @@ namespace RpgApi.Controllers
             catch (System.Exception ex)
             {
 
-                return BadRequest(ex.Message);
+                return BadRequest(ex.Message + " - "+ ex.InnerException);
             }
         }
 
@@ -51,7 +51,7 @@ namespace RpgApi.Controllers
             catch (System.Exception ex)
             {
 
-                return BadRequest(ex.Message);
+                return BadRequest(ex.Message + " - "+ ex.InnerException);
             }
 
         }
@@ -87,7 +87,7 @@ namespace RpgApi.Controllers
             catch (System.Exception ex)
             {
 
-                return BadRequest(ex.Message);
+                return BadRequest(ex.Message + " - "+ ex.InnerException);
             }
         }
         [HttpPut]
@@ -107,7 +107,7 @@ namespace RpgApi.Controllers
             catch (System.Exception ex)
             {
                 
-                return BadRequest(ex.Message);
+                return BadRequest(ex.Message + " - "+ ex.InnerException);
             }
         }
 
@@ -125,7 +125,7 @@ namespace RpgApi.Controllers
             catch (System.Exception ex)
             {
                 
-               return BadRequest(ex.Message);
+               return BadRequest(ex.Message + " - "+ ex.InnerException);
             }
         }
 

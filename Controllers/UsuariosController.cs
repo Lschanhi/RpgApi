@@ -22,7 +22,7 @@ namespace Aula04RpgApi.Controllers
     public class UsuariosController : ControllerBase
     {
         private readonly DataContext _context;
-         private readonly IConfiguration _configuration;
+        private readonly IConfiguration _configuration;
         public UsuariosController(DataContext context, IConfiguration configuration)
         {
             _context = context;

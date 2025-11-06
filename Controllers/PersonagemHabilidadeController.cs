@@ -53,7 +53,7 @@ namespace Aula04RpgApi.Controllers
             catch (System.Exception ex)
             {
 
-                return BadRequest(ex.Message);
+                return BadRequest(ex.Message + " - "+ ex.InnerException);
             }
         }
 
@@ -76,7 +76,7 @@ namespace Aula04RpgApi.Controllers
             catch (System.Exception ex)
             {
 
-                return BadRequest(ex.Message);
+                return BadRequest(ex.Message + " - "+ ex.InnerException);
             }
         }
 
@@ -92,7 +92,7 @@ namespace Aula04RpgApi.Controllers
             }
             catch (System.Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest(ex.Message + " - "+ ex.InnerException);
             }
         }
         [HttpPost("DeletePersonagemHabilidade")]
@@ -114,7 +114,7 @@ namespace Aula04RpgApi.Controllers
             catch (System.Exception ex)
             {
                 
-                return BadRequest($"Erro ao remover: {ex.Message}");
+                return BadRequest(ex.Message + " - "+ ex.InnerException);
             }
 
         }
